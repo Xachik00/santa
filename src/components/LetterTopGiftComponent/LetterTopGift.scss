@@ -1,0 +1,63 @@
+.LetterTopGift {
+    width: 100%;
+
+    .LetterCont {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 306px;
+        flex-wrap: wrap;
+
+        .textGift {
+            color: #FFDA65;
+            font-size: 48px;
+            font-weight: 500;
+        }
+
+        .imageGift {
+            max-width: 558px;
+
+            img {
+                width: 100%;
+                object-fit: contain;
+
+            }
+
+            ;
+            cursor: pointer;
+
+        }
+
+        @media(max-width:617px) {
+            .textGift {
+                font-size: 40px;
+            }
+        }
+
+        @media(max-width:523px) {
+            .ttextGift {
+                font-size: 35px;
+            }
+        }
+
+        @media(max-width:463px) {
+            .textGift {
+                font-size: 30px;
+            }
+        }
+
+        @media(max-width:403px) {
+            .textGift {
+                font-size: 25px;
+            }
+        }
+
+        @media(max-width:403px) {
+            .textGift {
+                font-size: 22px;
+            }
+        }
+    }
+}
