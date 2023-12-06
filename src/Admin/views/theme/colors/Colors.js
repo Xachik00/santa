@@ -26,8 +26,9 @@ import {
 } from '@coreui/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { getInActiveDream } from '../../../../Store/Action/WishAction'
+import Pagination from '../../../components/Pagination'
 
-const Dashboard = () => {
+const InActivePage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -36,11 +37,17 @@ const Dashboard = () => {
 
   const { InActive } = useSelector((state) => state.InActive);
   const [oneData,setOneData] = useState({});
-  // async function changeActive(id) {
-  //   await dispatch(changeIsActive(id))
-  //   await dispatch(getAllWish());
+ 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
 
-  // }
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = InActive.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(()=>{
     if(oneData.id){
@@ -59,7 +66,6 @@ const Dashboard = () => {
       html: `
       <p>${oneData?.birth}</p>
       <p>${oneData?.age}</p>
-      <p>${oneData?.letter}</p>
     `,
       showCancelButton: true,
       cancelButtonText: "Հետ",
@@ -81,7 +87,7 @@ const Dashboard = () => {
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
-            <CCardHeader> Հրեշտակ ունեցող մասնակիցներ</CCardHeader>
+            <CCardHeader> Հրեշտակ չունեցող մասնակիցներ</CCardHeader>
             <CCardBody>
               <CTable align="middle" className="mb-0 border" hover responsive>
                 <CTableHead className="text-nowrap">
@@ -102,7 +108,7 @@ const Dashboard = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {InActive.map((item, index) => (
+                  {currentItems.map((item, index) => (
                     <CTableRow v-for="item in tableItems" key={index + 11}>
                       <CTableDataCell>
                         <div className="fw-semibold text-nowrap text-center">{item?.id}</div>
@@ -137,11 +143,17 @@ const Dashboard = () => {
                 </CTableBody>
               </CTable>
             </CCardBody>
+            <Pagination
+                  totalItems={InActive.length}
+                  itemsPerPage={itemsPerPage}
+                  onPageChange={handlePageChange}
+                />
           </CCard>
+          
         </CCol>
       </CRow>
     </>
   )
 }
 
-export default Dashboard
+export default InActivePage

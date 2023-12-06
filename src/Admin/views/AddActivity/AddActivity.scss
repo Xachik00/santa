@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-.AdminAddData {
+.AdminActivityData {
   width: 100%;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,7 +31,7 @@
         width: 50%;
         margin: 0 auto;
 
-        label {
+        &>label {
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -65,6 +65,7 @@
           margin-top: 10px;
           position: relative;
           overflow: hidden;
+
           img {
             margin: 0 auto;
             max-width: 100%;
@@ -74,42 +75,49 @@
             border-radius: 15px;
             // margin-right: 10px;
           }
-          &:hover{
-           .deleteDiv{
-            display: block;
-          } 
-        }
-        .deleteDiv{
-          position: absolute;
-          width: 100%;
-          padding: 15px;
-          bottom: 0;
-          border-bottom-right-radius:25px ;
-          border-bottom-left-radius:25px ;
-          display: none;
-          background: #00000050;
-          svg{
-            width: 2rem;
-            height: 2rem;
-            // font-size: 1.5rem;
-            cursor: pointer;
-            &:hover{
-              color: red;
+
+          &:hover {
+            .deleteDiv {
+              display: block;
             }
           }
+
+          .deleteDiv {
+            position: absolute;
+            width: 100%;
+            padding: 15px;
+            bottom: 0;
+            border-bottom-right-radius: 25px;
+            border-bottom-left-radius: 25px;
+            display: none;
+            background: #00000050;
+
+            svg {
+              width: 2rem;
+              height: 2rem;
+              // font-size: 1.5rem;
+              cursor: pointer;
+
+              &:hover {
+                color: red;
+              }
+            }
           }
-          
+
         }
+
         @media (max-width:900px) {
           gap: 10px;
-          .imageContainer{
+
+          .imageContainer {
             min-height: 100px;
-            max-height: 50px; 
-            font-size: 12px;       
-            .deleteDiv{
+            max-height: 50px;
+            font-size: 12px;
+
+            .deleteDiv {
               padding: 5px;
-  
-              svg{
+
+              svg {
                 width: 1rem;
                 height: 1rem;
               }

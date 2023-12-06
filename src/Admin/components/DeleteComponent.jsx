@@ -1,5 +1,4 @@
 import Swal from "sweetalert2";
-import "@sweetalert2/theme-borderless/borderless.css";
 
 async function DeleteAll({ title, text, deleteItem }) {
   Swal.fire({

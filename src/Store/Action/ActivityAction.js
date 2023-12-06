@@ -2,13 +2,14 @@ import axios from "axios";
 import { fetchActivity, fetchErrorActivity, fetchingActivity } from "../Slice/ActivitySlice";
 const URL = process.env.REACT_APP_BASE_URL;
 
-export const addActivity = (obj,SetError) => {
+export const addActivity = (obj,setError) => {
     return async () => {
         try {
            await axios.post(`${URL}action/addAction`,obj);
+           setError("ok")
         }
         catch (error) {
-            SetError(error)
+            setError(error)
             
         }
 
@@ -16,7 +17,7 @@ export const addActivity = (obj,SetError) => {
 }
 export const editActivity = (obj,id,setError) => {
     return async () => {
-       const newObj = obj
+       const newObj = {...obj}
     
         if (obj.hasOwnProperty('id')) {
             delete newObj?.id

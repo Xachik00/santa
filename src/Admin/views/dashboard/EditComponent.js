@@ -22,9 +22,9 @@ const EditComponent = ({ edit, setEdit, img, setImg }) => {
 
 
             <div className="body">
-                <form autoCapitalize="off">
-                    <h1>Ավելացնել Ցանկություն</h1>
-                    <FormGroup className="flex items-center justify-between w-[50%] upload-image-label">
+                <form className=' editForm' autoCapitalize="off">
+                    <h1>Փոփոխել մասնակցի տվյալները</h1>
+                    <FormGroup className="upload-image-label">
                         <FormLabel htmlFor="addPersonImage">
                             Փոփոխել Նկար <CIcon icon={cilPlus} />
                         </FormLabel>
@@ -32,6 +32,7 @@ const EditComponent = ({ edit, setEdit, img, setImg }) => {
                         <FormControl
                             style={{ display: 'none' }}
                             type="file"
+                            value=''
                             name="addPersonImage"
                             id="addPersonImage"
                             onChange={(e) => {

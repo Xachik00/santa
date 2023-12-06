@@ -20,6 +20,7 @@ const AdminAddData = () => {
     const [activityItem, setActivityItem] = useState({ description: "Այս տարի ընտրել ենք Գեղարքունիքի մարզի Գանձակ, Ծաղկաշեն և Գեղարքունիք գյուղերի շուրջ 200 երեխաների։" })
     const [selectValue, setSelectValue] = useState("");
     const [error, setError] = useState({});
+    
     useEffect(() => {
         if (selectValue) {
             dispatch(getActivity(selectValue));
@@ -39,7 +40,9 @@ const AdminAddData = () => {
     }, [Activity])
 
     useEffect(() => {
+        console.log(2);
         if (img?.length > 0) {
+            console.log(1);
             if (activityItem?.photos) {
                 let newPhotos = [...activityItem?.photos, img]
                 setActivityItem({ ...activityItem, photos: newPhotos })
@@ -49,13 +52,13 @@ const AdminAddData = () => {
             setImg('')
         }
     }, [img])
-
+console.log(img);
 
 
 
     function sendToSave(e) {
         e.preventDefault();
-        const newActiveItem = activityItem
+        const newActiveItem = { ...activityItem }
         if (activityItem.hasOwnProperty('created_at')) {
             delete newActiveItem?.created_at
 
@@ -89,7 +92,9 @@ const AdminAddData = () => {
                 icon: "success",
                 title: "Տվըալները հաջողությամբ հաստատվել են",
                 showConfirmButton: false,
-                timer: 1500
+                timer: 4500
+            }).then(()=>{
+                setError("")
             });
         }
         if (error?.response?.status < 200 || error?.response?.status >= 400) {
@@ -99,11 +104,14 @@ const AdminAddData = () => {
                 title: "Որևէ սխալ կա փորցեք կրկին",
                 showConfirmButton: false,
                 timer: 1500
+            }).then(()=>{
+                setError("")
             });
         }
+
     }, [error])
     return (
-        <div className="AdminAddData">
+        <div className="AdminActivityData">
             <div className="body">
                 <form autoCapitalize="off">
                     <h1>Ավելացնել Տվյալներ</h1>
@@ -129,7 +137,9 @@ const AdminAddData = () => {
                                     type="file"
                                     name="addPersonImage"
                                     id="addPersonImage"
+                                    value=''
                                     onChange={(e) => {
+                                        console.log(555);
                                         dispatch(uploadImageHandleradd(e, setImg));
                                     }}
                                     accept="image/*"

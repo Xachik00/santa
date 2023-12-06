@@ -4,13 +4,25 @@ import React, { useEffect, useState } from "react";
 import "./CartTransferTwo.scss";
 import { addBenevolentData } from "../../Store/Action/BenevolentAction";
 import Swal from "sweetalert2";
+import { CSpinner } from "@coreui/react";
 
 
 const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, childID, setInputVal }) => {
   const [error, setError] = useState('')
+  const [loading,setLoading] = useState(false)
+
+
+
   useEffect(() => {
     if (!error?.message && error === 'ok') {
       setSuccsses(true);
+      setInputVal({
+        child_id: -1,
+        name: "",
+        surName: "",
+        phoneNumber: "",
+        mail: "",
+      })
     } else if (error?.message) {
       if (error?.response?.status < 200 || error?.response?.status >= 400) {
         Swal.fire({
@@ -18,16 +30,16 @@ const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, chi
           icon: "error",
           title: "Որևէ սխալ կա փորցեք կրկին",
           showConfirmButton: false,
-          timer: 1500
+          timer: 4500
         }).then((res) => {
           setInputVal({
-            child_id: childID?.id,
+            child_id: -1,
             name: "",
             surName: "",
             phoneNumber: "",
             mail: "",
-
           })
+          setError("")
         })
       }
     }
@@ -35,13 +47,13 @@ const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, chi
   }, [error])
 
 
-
+  console.log(error,'err');
 
 
 
 
   async function saveData() {
-    await addBenevolentData(inputVal, setError)
+    await addBenevolentData(inputVal, setError,setLoading)
   }
 
   return (
@@ -66,8 +78,9 @@ const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, chi
                   <div dangerouslySetInnerHTML={{ __html: childID.letter }} />
                 </div>
               </div>
-              <button type="submit" className="saveBtn" onClick={() => { saveData() }} >
-                Հաստատել
+              <button disabled={loading} type="submit" className="saveBtn" onClick={() => { saveData() }} >
+              {!loading?"Հաստատել":<CSpinner color="primary" />}
+
               </button>
             </div>
 

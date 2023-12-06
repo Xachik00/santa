@@ -35,12 +35,17 @@ import { getBenevolentData } from '../../../Store/Action/BenevolentAction'
 import GiftModal from './Gift'
 import { editWish } from '../../../Store/Action/WishAction';
 import EditComponent from './EditComponent';
+import Pagination from '../../components/Pagination';
 
 
 const Dashboard = () => {
+
+
+
+
   const dispatch = useDispatch()
-  async function deleteItem(id,) {
-    DeleteAll({
+  async function deleteItem(id) {
+    await DeleteAll({
       title: "Ցանկանում եք ջնջել՞",
       text: "Ջնջելու դեպքում վերականգնել չեք կարող",
       deleteItem: () => dispatch(deleteAllWish(id))
@@ -52,7 +57,7 @@ const Dashboard = () => {
     dispatch(getAllWish());
   }, [dispatch]);
 
-  const { Wish,loading } = useSelector((state) => state.Wish);
+  const { Wish } = useSelector((state) => state.Wish);
   const { Benevolent } = useSelector((state) => state?.Benevolent);
   const [addBen, setAddBen] = useState(0)
   const [edit, setEdit] = useState('')
@@ -60,7 +65,7 @@ const Dashboard = () => {
 
   function showMoreBenevolentInfo() {
     Swal.fire({
-      title: `${ Benevolent[0]?.name + "    " }${ Benevolent[0]?.surName }`,
+      title: `${Benevolent[0]?.name + "    "}${Benevolent[0]?.surName}`,
       html: `
       <p>${Benevolent[0]?.mail}</p>
       <p>${Benevolent[0]?.phoneNumber}</p>
@@ -78,103 +83,112 @@ const Dashboard = () => {
         }
       })
   }
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
 
-useEffect(() => {
-  if (Benevolent && Benevolent.length > 0) {
-    showMoreBenevolentInfo();
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = Wish.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  useEffect(() => {
+    if (Benevolent && Benevolent.length > 0) {
+      showMoreBenevolentInfo();
+    }
+  }, [Benevolent]);
+
+  async function showBenevolent(id) {
+    await dispatch(getBenevolentData(id))
   }
-}, [Benevolent]);
+  async function becomoeBen(id) {
+    setAddBen(id);
 
-async function showBenevolent(id) {
-  await dispatch(getBenevolentData(id))
-}
-async function becomoeBen(id) {
-  setAddBen(id);
+  }
 
-}
-async function editToSave(e) {
-  e.preventDefault()
-  await dispatch(editWish({ ...edit, image: img }));
-  dispatch(getAllWish());
-  setEdit('')
-}
-return (
-  <>{!edit ?
-    <CRow>
-      <CCol xs>
-        <CCard className="mb-4">
-          <CCardHeader> Ամբողջ մասնակիցների ցուցակը</CCardHeader>
-          <CCardBody>
-            <CTable align="middle" className="mb-0 border" hover responsive>
-              <CTableHead className="text-nowrap">
-                <CTableRow>
-                  <CTableHeaderCell className="bg-body-tertiary text-center">
-                    Մասնակցի Id
-                  </CTableHeaderCell>
-                  <CTableHeaderCell className="bg-body-tertiary text-center">
-                    <CIcon icon={cilPeople} />
-                  </CTableHeaderCell>
-                  <CTableHeaderCell className="bg-body-tertiary">Մասնակից</CTableHeaderCell>
-                  <CTableHeaderCell className="bg-body-tertiary text-center">
-                    Ծրագրի մասնակից դարձել է
-                  </CTableHeaderCell>
-                  <CTableHeaderCell className="bg-body-tertiary">ՈՒնի հրեշտակ</CTableHeaderCell>
-                  <CTableHeaderCell className="bg-body-tertiary text-center">
-                    Հովանավորի առկայություն
-                  </CTableHeaderCell>
-                  <CTableHeaderCell className="bg-body-tertiary"><CIcon icon={cilXCircle} /></CTableHeaderCell>
-                </CTableRow>
-              </CTableHead>
-              <CTableBody>
-                {Wish?.map((item, index) => (
-                  <CTableRow v-for="item in tableItems" key={index + 11}>
-                    <CTableDataCell>
-                      <div className="fw-semibold text-nowrap text-center">{item?.id}</div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CAvatar size="md" src={item?.image} />
-                    </CTableDataCell>
-
-                    <CTableDataCell>
-                      <div>{item?.full_name}</div>
-                      <div className="small text-body-secondary text-nowrap">
-                        <span>{item?.age + " "}</span> |
-                        {"    " + item?.birth + "  "}
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <span>{item?.created_at}</span>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div className="d-flex justify-content-between text-nowrap">
-                        <div className="text-center ">{item?.is_active ? "Այո" : "ոչ"}</div>
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CIcon size="xl" icon={item?.payment?.icon} />
-                      <CButton
-                        onClick={() => { item?.is_active ? showBenevolent(item?.id) : becomoeBen(item?.id) }} >{item?.is_active ? "Տեսնել Հրեշտակին" : "Հովանավոր չի գտնվել"}</CButton>
-                    </CTableDataCell>
-                    <CTableDataCell  >
-                      <CButton className="m-2" onClick={() => deleteItem(item?.id)} ><CIcon icon={cilX}
-                      /></CButton>
-                      <CButton className="m-2" onClick={() => setEdit(item)} ><CIcon icon={cilPen}
-                      /></CButton>
-                    </CTableDataCell>
+  return (
+    <>{!edit ?
+      <CRow>
+        <CCol xs>
+          <CCard className="mb-4">
+            <CCardHeader> Ամբողջ մասնակիցների ցուցակը</CCardHeader>
+            <CCardBody>
+              <CTable align="middle" className="mb-0 border" hover responsive>
+                <CTableHead className="text-nowrap">
+                  <CTableRow>
+                    <CTableHeaderCell className="bg-body-tertiary text-center">
+                      Մասնակցի Id
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary text-center">
+                      <CIcon icon={cilPeople} />
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Մասնակից</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary text-center">
+                      Ծրագրի մասնակից դարձել է
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">ՈՒնի հրեշտակ</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary text-center">
+                      Հովանավորի առկայություն
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary"><CIcon icon={cilXCircle} /></CTableHeaderCell>
                   </CTableRow>
-                ))}
-              </CTableBody>
-            </CTable>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      {
-        addBen !== 0 && <GiftModal addBen={addBen} setAddBen={setAddBen} />
-      }
-    </CRow> :
-  
-  <EditComponent edit={edit} setEdit={setEdit} img={img} setImg={setImg} />
-      }
+                </CTableHead>
+                <CTableBody>
+                  {currentItems?.map((item, index) => (
+                    <CTableRow v-for="item in tableItems" key={index + 11}>
+                      <CTableDataCell>
+                        <div className="fw-semibold text-nowrap text-center">{item?.id}</div>
+                      </CTableDataCell>
+                      <CTableDataCell className="text-center">
+                        <CAvatar size="md" src={item?.image} />
+                      </CTableDataCell>
+
+                      <CTableDataCell>
+                        <div>{item?.full_name}</div>
+                        <div className="small text-body-secondary text-nowrap">
+                          <span>{item?.age + " "}</span> |
+                          {"    " + item?.birth + "  "}
+                        </div>
+                      </CTableDataCell>
+                      <CTableDataCell className="text-center">
+                        <span>{item?.created_at}</span>
+                      </CTableDataCell>
+                      <CTableDataCell>
+                        <div className="d-flex justify-content-between text-nowrap">
+                          <div className="text-center ">{item?.is_active ? "Այո" : "ոչ"}</div>
+                        </div>
+                      </CTableDataCell>
+                      <CTableDataCell className="text-center">
+                        <CIcon size="xl" icon={item?.payment?.icon} />
+                        <CButton
+                          onClick={() => { item?.is_active ? showBenevolent(item?.id) : becomoeBen(item?.id) }} >{item?.is_active ? "Տեսնել Հրեշտակին" : "Հովանավոր չի գտնվել"}</CButton>
+                      </CTableDataCell>
+                      <CTableDataCell  >
+                        <CButton className="m-2" onClick={() => deleteItem(item?.id)} ><CIcon icon={cilX}
+                        /></CButton>
+                        <CButton className="m-2" onClick={() => setEdit(item)} ><CIcon icon={cilPen}
+                        /></CButton>
+                      </CTableDataCell>
+                    </CTableRow>
+                  ))}
+                </CTableBody>
+
+              </CTable>
+            </CCardBody>
+            <Pagination
+              totalItems={Wish.length}
+              itemsPerPage={itemsPerPage}
+              onPageChange={handlePageChange}
+            />
+          </CCard>
+        </CCol>
+        {
+          addBen !== 0 && <GiftModal addBen={addBen} setAddBen={setAddBen} />
+        }
+      </CRow> :
+      <EditComponent edit={edit} setEdit={setEdit} img={img} setImg={setImg} />
+    }
     </>
   )
 }

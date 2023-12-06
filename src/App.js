@@ -36,13 +36,18 @@ function App() {
 
   });
 
+  // useEffect(()=>{
+  //   if (!window.location.pathname.includes('/admin')) {
+  //     localStorage.removeItem('auth');
+  //   }
+
+  // },[path])
+
   useEffect(()=>{
-    if (!window.location.pathname.includes('/admin')) {
-      localStorage.removeItem('auth');
+    if(window.location.pathname === "/admin"){
+      window.location.pathname = "/admin/dashboard"
     }
-
   },[path])
-
   return (
     <div className="App">
      {(!window?.location.pathname.includes("/admin"))&& <Header setModal={setModal} />}

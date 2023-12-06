@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./GiftModal.scss";
 import { addBenevolentLetter } from "../../Store/Action/BenevolentAction";
 import Swal from "sweetalert2";
+import { CSpinner } from "@coreui/react";
 
 const GiftModal = ({ setModal, setTransitonmodal, setSuccsses, childID }) => {
   const [inputVal, setInputVal] = useState({
@@ -17,6 +18,11 @@ const GiftModal = ({ setModal, setTransitonmodal, setSuccsses, childID }) => {
   const [errorMessage, setErrorMessage] = useState([]);
   const [errorVal, setErrorVal] = useState([]);
   const [errorMail, setErrorMail] = useState([]);
+  const [loading,setLoading] = useState(false)
+  
+  
+  
+  
   function changeValidation(value, name) {
     if (!value || value.trim()?.length === 0) {
       if (!error.includes(name)) {
@@ -51,17 +57,23 @@ const GiftModal = ({ setModal, setTransitonmodal, setSuccsses, childID }) => {
       setError(errorArr)
     } else {
       if (!error?.length && !errorMessage?.length && !errorVal?.length && !errorMail?.length) {
-        addBenevolentLetter(inputVal, setErrorSucces);
-
+        addBenevolentLetter(inputVal, setErrorSucces,setLoading);
       }
-
-
     }
 
   }
   useEffect(() => {
     if (!errorSucces?.message && errorSucces === 'ok') {
+      setTransitonmodal(false)
       setSuccsses(true);
+      setInputVal({
+        child_id: -1,
+        name: "",
+        surName: "",
+        phoneNumber: "",
+        mail: "",
+      })
+      setErrorSucces("")
     } else if (errorSucces?.message) {
       if (errorSucces?.response?.status < 200 || errorSucces?.response?.status >= 400) {
         Swal.fire({
@@ -69,12 +81,22 @@ const GiftModal = ({ setModal, setTransitonmodal, setSuccsses, childID }) => {
           icon: "error",
           title: "Որևէ սխալ կա փորցեք կրկին",
           showConfirmButton: false,
-          timer: 1500
-        });
+          timer: 3500
+        }).then(()=>{
+          setInputVal({
+            child_id: -1,
+            name: "",
+            surName: "",
+            phoneNumber: "",
+            mail: "",
+          })
+          setErrorSucces("")
+      });
       }
     }
 
   }, [errorSucces])
+console.log(errorSucces,'errrrrrrrr2');
 
   const reg = new RegExp(/^\+374\d{8}$/)
   const emailRegex = new RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
@@ -215,8 +237,8 @@ const GiftModal = ({ setModal, setTransitonmodal, setSuccsses, childID }) => {
                       </span>
                     )}
                   </div>
-                  <button type="submit" className="saveBtn" onClick={(e) => saveData(e)} >
-                    Հաստատել
+                  <button disabled={loading} type="submit" className={"saveBtn"}  onClick={(e) => saveData(e)} >
+                    {!loading?"Հաստատել":<CSpinner color="primary" />}
                   </button>
                 </div>
               </form>

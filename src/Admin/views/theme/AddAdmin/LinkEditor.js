@@ -18,7 +18,7 @@ export function Eddditor({ value,setValue }) {
 
 
     return (
-        <div className="App">
+        <div className="editor">
             <JoditEditor
                 ref={editor}
                 value={value?.letter}

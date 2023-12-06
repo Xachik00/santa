@@ -27,8 +27,9 @@
   import {  getActiveDream,  } from '../../../../Store/Action/WishAction'
   import { getBenevolentData } from '../../../../Store/Action/BenevolentAction'
   import { fetchBenevolentUbdate } from '../../../../Store/Slice/BenevolentSlice'
+import Pagination from '../../../components/Pagination'
 
-  const Dashboard = () => {
+  const ActivePage = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -63,7 +64,6 @@
         html: `
         <p>${oneData?.birth}</p>
         <p>${oneData?.age}</p>
-        <p>${oneData?.letter}</p>
       `,
         showCancelButton: true,
         cancelButtonText: "Հետ",
@@ -76,6 +76,17 @@
         }
       })
     }
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = Active.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
     
 
     function showMoreBenevolentInfo() {
@@ -144,7 +155,7 @@
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    {Active.map((item, index) => (
+                    {currentItems.map((item, index) => (
                       <CTableRow v-for="item in tableItems" key={index + 11}>
                         <CTableDataCell>
                           <div className="fw-semibold text-nowrap text-center">{item?.id}</div>
@@ -187,6 +198,11 @@
                   </CTableBody>
                 </CTable>
               </CCardBody>
+              <Pagination
+                  totalItems={Active.length}
+                  itemsPerPage={itemsPerPage}
+                  onPageChange={handlePageChange}
+                />
             </CCard>
           </CCol>
         </CRow>
@@ -194,4 +210,4 @@
     )
   }
 
-  export default Dashboard
+  export default ActivePage;

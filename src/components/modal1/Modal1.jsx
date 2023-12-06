@@ -62,7 +62,7 @@ const Modal1 = ({ setModal, setBuyModal, setTransitonmodal, setChildID }) => {
                                     <div key={index + 1} >
                                         <div className='topBlock' >
 
-                                            <p className="title">{el?.full_name + "  "} {el?.age + "   "}{el?.birth}</p>
+                                            <p className="title">{el?.full_name + "  "} {el?.age }<span>տ.{'   '}</span>{el?.birth}</p>
 
                                             <div className="imageContainer">
                                                 <img src={el?.image} alt={el?.full_name} />
