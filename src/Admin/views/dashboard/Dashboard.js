@@ -50,7 +50,7 @@ const Dashboard = () => {
       text: "Ջնջելու դեպքում վերականգնել չեք կարող",
       deleteItem: () => dispatch(deleteAllWish(id))
     });
-    await dispatch(getAllWish());
+    dispatch(getAllWish());
 
   }
   useEffect(() => {

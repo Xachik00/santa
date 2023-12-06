@@ -22,7 +22,7 @@ export const deleteAllWish = (id) => {
     return async (dispatch)=>{
         try{
             await axios.delete(`${URL}admin/deleteDreams/${id}`); 
-
+            dispatch(getAllWish());
         }
         catch(error){
             console.error(error,'error');
