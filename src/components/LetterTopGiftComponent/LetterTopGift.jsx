@@ -4,10 +4,11 @@ const LetterTopGift = ({setModal}) => {
   return (
     <div className='LetterTopGift' id="Նամակներ" >
 
-      <div className='LetterCont' >
-          <div className="textGift">Բացեք նվերի տուփը</div>
+      <div className='LetterCont ' >
+          <div className="textGift">Ընտրեք մի զարդարանք տոնածառից</div>
           <div className="imageGift" onClick={()=>setModal(true)} >
-            <img src='/images/Gift.png' alt='click to open Gift' />
+            <img src='/images/tonacar.png' alt='click to open Gift' />
+            <img src="./images/xaxaliq.png" alt="" className=' img1' />
           </div>
       </div>
  
