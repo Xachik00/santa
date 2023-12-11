@@ -1,5 +1,7 @@
 import React from "react";
 import "./Footer.scss";
+import CIcon from "@coreui/icons-react";
+import { cibFacebook, cibInstagram } from "@coreui/icons";
 const Footer = () => {
   const items = [
     {
@@ -37,8 +39,12 @@ const Footer = () => {
           </div>
           <div className="social">
             <div className="socialLogo">
-              <img src="/images/facebook.png" alt="facebook" />
-              <img src="/images/telegram.png" alt="telegram" />
+            
+              {/* <a href=""><img src="/images/facebook.png" alt="facebook" /></a> */}
+              <a href="https://www.facebook.com/ShoonchYogaStudio?mibextid=LQQJ4d" target="_balnk"><CIcon icon={cibFacebook} size="xl"/></a>
+              <a href="https://instagram.com/shoonchyogastudio?igshid=YTQwZjQ0NmI0OA==" target="_balnk"><CIcon icon={cibInstagram} size="xl"/></a>
+
+              {/* <img src="/images/telegram.png" alt="telegram" /> */}
             </div>
             <p className="tel">
               Հեռ․ <a href="tel:+37498548267">+37498548267</a>

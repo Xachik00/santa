@@ -30,7 +30,7 @@ const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, chi
           icon: "error",
           title: "Որևէ սխալ կա փորցեք կրկին",
           showConfirmButton: false,
-          timer: 4500
+          timer: 2500
         }).then((res) => {
           setInputVal({
             child_id: -1,

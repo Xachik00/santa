@@ -81,7 +81,7 @@ const GiftModal = ({ setModal, setTransitonmodal, setSuccsses, childID }) => {
           icon: "error",
           title: "Որևէ սխալ կա փորցեք կրկին",
           showConfirmButton: false,
-          timer: 3500
+          timer: 2500
         }).then(()=>{
           setInputVal({
             child_id: -1,

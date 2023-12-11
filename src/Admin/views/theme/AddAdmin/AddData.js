@@ -25,7 +25,7 @@ const AdminAddData = () => {
                 icon: "success",
                 title: "Տվըալները հաջողությամբ հաստատվել են",
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500
             }).then(() => {
                 setError("")
             });
@@ -36,7 +36,7 @@ const AdminAddData = () => {
                 icon: "error",
                 title: "Լրացրեք բոլոր դաշտերը!!!",
                 showConfirmButton: false,
-                timer: 10000500
+                timer: 2500
             }).then(() => {
                 setError("")
             });

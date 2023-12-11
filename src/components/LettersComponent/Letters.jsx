@@ -45,6 +45,26 @@ const Letters = ({ setModal }) => {
       id: 10,
       src: "/images/ballon10.png",
     },
+    {
+      id: 1,
+      src: "/images/ballon1.png",
+    },
+    {
+      id: 2,
+      src: "/images/ballon2.png",
+    },
+    {
+      id: 3,
+      src: "/images/ballon3.png",
+    },
+    {
+      id: 4,
+      src: "/images/ballon4.png",
+    },
+    {
+      id: 5,
+      src: "/images/ballon5.png",
+    },
   ];
   
   const [defaultHeights, setDefaultHeights] = useState(
@@ -70,11 +90,12 @@ const Letters = ({ setModal }) => {
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear() - 1;
-  const yearsArray = Array.from({ length: 10 }, (_, i) => currentYear - i);
+  const yearsArray = Array.from({ length: 15 }, (_, i) => currentYear - i);
 
   const [year,setYear] = useState(0)
   const [showTwoCom,setShowTwoCom] = useState(false)
   function activity(yearVal){
+    console.log(yearVal,'val');
     setYear(yearVal);
     setShowTwoCom(true)
 
@@ -92,7 +113,7 @@ const Letters = ({ setModal }) => {
         <>
         <div className="baloonImages">
           {BalloonsImage?.map((el, index) => (
-            <div className="imgConta" key={el.id} onClick={()=>activity(yearsArray[index])}  >
+            <div className="imgConta" style={{width:'140px',padding:"0 10px"}} key={el.id} onClick={()=>activity(index)}  >
               <img
                 src={el?.src}
                 alt="WishBaloons"
@@ -113,14 +134,6 @@ const Letters = ({ setModal }) => {
             </div>
           ))}
         </div>
-        {/* <div className="nextPrevButtons">
-          <div className="prev">
-            <img src="/images/PrevBtn.png" alt="Prev" />
-          </div>
-          <div className="next">
-            <img src="/images/NextBtn.png" alt="Next" />
-          </div>
-        </div> */}
         </>:
       <LetterComponentTwo year={year} yearsArray={yearsArray} setShowTwoCom={setShowTwoCom} setYear={setYear} />
         

@@ -8,10 +8,10 @@ const LetterComponentTwo = ({ year, yearsArray, setShowTwoCom, setYear }) => {
     const dispatch = useDispatch()
     const { Activity, loading } = useSelector((state) => state?.Activity)
     useEffect(() => {
-        dispatch(getActivity(year));
+        dispatch(getActivity(yearsArray[year]));
     }, [dispatch, year])
 
-
+console.log(yearsArray,'arr');
 
     return (
         <div className='LetterComponentTwo' >
@@ -23,14 +23,14 @@ const LetterComponentTwo = ({ year, yearsArray, setShowTwoCom, setYear }) => {
                         </div>
                         <div className="img2">
                             <img src="/images/allBallonNum.png" alt="this year" />
-                            <p className='yearNumber'>{year}</p>
+                            <p className={'yearNumber '}>{yearsArray[year]}</p>
                         </div>
                     </div>
                     <p className="ballonText">{Activity[0]?.description}</p>
                 </div>
                 <div className='but' >
-                    <div onClick={() => { yearsArray[0] !== year && setYear(year + 1) }} ><img src='/images/PrevBtn.png' alt='click to prev year' /><p>{year + 1}</p></div>
-                    <div onClick={() => { yearsArray[yearsArray?.length - 1] !== year && setYear(year - 1) }} ><img src='/images/NextBtn.png' alt='click to prev year' /><p>{year - 1}</p></div>
+                    {yearsArray[0] !== yearsArray[year] &&<div onClick={() => { yearsArray[0] !== yearsArray[year] && setYear(year - 1) }} ><img src='/images/PrevBtn.png' alt='click to prev year' /><p>{yearsArray[year - 1] }</p></div>}
+                    {yearsArray[yearsArray?.length - 1] !== yearsArray[year]&&<div onClick={() => { yearsArray[yearsArray?.length - 1] !== yearsArray[year] && setYear(year + 1) }} ><img src='/images/NextBtn.png' alt='click to prev year' /><p>{yearsArray[year + 1]}</p></div>}
                 </div>
 
             </div>

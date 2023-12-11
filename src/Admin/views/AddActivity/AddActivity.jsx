@@ -13,14 +13,14 @@ import Swal from 'sweetalert2';
 const AdminAddData = () => {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear() - 1;
-    const yearsArray = Array.from({ length: 10 }, (_, i) => currentYear - i);
+    const yearsArray = Array.from({ length: 15 }, (_, i) => currentYear - i);
     const [img, setImg] = useState("");
     const dispatch = useDispatch();
     const { Activity, loading } = useSelector((state) => state?.Activity)
     const [activityItem, setActivityItem] = useState({ description: "Այս տարի ընտրել ենք Գեղարքունիքի մարզի Գանձակ, Ծաղկաշեն և Գեղարքունիք գյուղերի շուրջ 200 երեխաների։" })
     const [selectValue, setSelectValue] = useState("");
     const [error, setError] = useState({});
-    
+    console.log(activityItem,'ac');
     useEffect(() => {
         if (selectValue) {
             dispatch(getActivity(selectValue));
@@ -52,7 +52,6 @@ const AdminAddData = () => {
             setImg('')
         }
     }, [img])
-console.log(img);
 
 
 
@@ -78,6 +77,7 @@ console.log(img);
         }
         setSelectValue("");
     }
+
     function DeleteImage(idx) {
         let newPhotos = activityItem?.photos?.filter((el, index) => index !== idx)
         setActivityItem({ ...activityItem, photos: newPhotos })
@@ -92,7 +92,7 @@ console.log(img);
                 icon: "success",
                 title: "Տվըալները հաջողությամբ հաստատվել են",
                 showConfirmButton: false,
-                timer: 4500
+                timer: 2500
             }).then(()=>{
                 setError("")
             });
@@ -103,13 +103,14 @@ console.log(img);
                 icon: "error",
                 title: "Որևէ սխալ կա փորցեք կրկին",
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500
             }).then(()=>{
                 setError("")
             });
         }
 
     }, [error])
+
     return (
         <div className="AdminActivityData">
             <div className="body">

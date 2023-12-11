@@ -49,13 +49,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 40%;
+            width: 80%;
             margin: 0 auto;
 
             // max-width: 130px0;
             div {
                 text-align: center;
-
+                cursor: pointer;
                 p {
                     font-size: 20px;
                     font-weight: 400;
@@ -76,7 +76,9 @@
 
         .imageBox {
             width: 100%;
-
+            img{
+                object-fit: contain !important;
+            }
             .item1 {
                 display: flex;
                 width: 100%;
