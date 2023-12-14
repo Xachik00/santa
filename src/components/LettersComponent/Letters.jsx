@@ -95,7 +95,6 @@ const Letters = ({ setModal }) => {
   const [year,setYear] = useState(0)
   const [showTwoCom,setShowTwoCom] = useState(false)
   function activity(yearVal){
-    console.log(yearVal,'val');
     setYear(yearVal);
     setShowTwoCom(true)
 

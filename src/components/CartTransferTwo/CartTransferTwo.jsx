@@ -47,7 +47,6 @@ const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, chi
   }, [error])
 
 
-  console.log(error,'err');
 
 
 

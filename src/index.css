@@ -1,5 +1,5 @@
 /*eslint-disable*/
-*{
+* {
   padding: 0;
   margin: 0;
   border: none;
@@ -7,55 +7,65 @@
   font-family: "ArilalArmSt";
 }
 
-a{
+a {
   text-decoration: none;
-  color:#DCF0FF ;
+  color: #DCF0FF;
 }
 
-.paginationComponent{
+.paginationComponent {
   display: flex;
   justify-content: center;
 }
-.pagination{
+
+.pagination {
   display: flex;
   gap: 15px;
 }
-.pagination>.active{
-  background: #c12026;
-  
+
+.pagination>.active {
+  background: #174e78;
+
 }
-.pagination>.active>button{
-  color: #DCF0FF !important;
+
+.pagination>.active>button {
+  color: white !important;
 }
-.pagination>li>button{
+
+.pagination>li>button {
   background: none;
   padding: 10px;
 }
-.pagination>li>button:hover{
-  background-color: #f09093;
+
+.pagination>li>button:hover {
+  background-color: #2a70a6;
 }
-body{
+
+body {
   background: #DCF0FF;
 }
-.App{
-  overflow-x:hidden ;
+
+.App {
+  overflow-x: hidden;
   background: #DCF0FF;
 
 }
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input[type=number] {
-  -moz-appearance: textfield; 
+  -moz-appearance: textfield;
 }
 
 
-input[type="checkbox"]{
+input[type="checkbox"] {
   width: 20px;
   height: 20px;
 }
-.jodit-status-bar{
+
+.jodit-status-bar {
   display: none !important;
 }

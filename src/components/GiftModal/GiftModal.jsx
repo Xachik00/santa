@@ -96,7 +96,6 @@ const GiftModal = ({ setModal, setTransitonmodal, setSuccsses, childID }) => {
     }
 
   }, [errorSucces])
-console.log(errorSucces,'errrrrrrrr2');
 
   const reg = new RegExp(/^\+374\d{8}$/)
   const emailRegex = new RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);

@@ -11,7 +11,6 @@ const LetterComponentTwo = ({ year, yearsArray, setShowTwoCom, setYear }) => {
         dispatch(getActivity(yearsArray[year]));
     }, [dispatch, year])
 
-console.log(yearsArray,'arr');
 
     return (
         <div className='LetterComponentTwo' >

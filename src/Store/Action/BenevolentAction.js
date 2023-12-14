@@ -3,7 +3,6 @@ import { fetchBenevolent, fetchErrorBenevolent, fetchingBenevolent } from "../Sl
 const URL = process.env.REACT_APP_BASE_URL;
 
 export const addBenevolentData = async (giftsArray, setError,setLoading) => {
-  console.log(giftsArray);
   try {
     setLoading(true)
     await axios.post(`${URL}benevolents/buyGift`, giftsArray);

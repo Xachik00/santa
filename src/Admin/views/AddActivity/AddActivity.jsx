@@ -20,7 +20,6 @@ const AdminAddData = () => {
     const [activityItem, setActivityItem] = useState({ description: "Այս տարի ընտրել ենք Գեղարքունիքի մարզի Գանձակ, Ծաղկաշեն և Գեղարքունիք գյուղերի շուրջ 200 երեխաների։" })
     const [selectValue, setSelectValue] = useState("");
     const [error, setError] = useState({});
-    console.log(activityItem,'ac');
     useEffect(() => {
         if (selectValue) {
             dispatch(getActivity(selectValue));
@@ -40,9 +39,7 @@ const AdminAddData = () => {
     }, [Activity])
 
     useEffect(() => {
-        console.log(2);
         if (img?.length > 0) {
-            console.log(1);
             if (activityItem?.photos) {
                 let newPhotos = [...activityItem?.photos, img]
                 setActivityItem({ ...activityItem, photos: newPhotos })
@@ -140,7 +137,6 @@ const AdminAddData = () => {
                                     id="addPersonImage"
                                     value=''
                                     onChange={(e) => {
-                                        console.log(555);
                                         dispatch(uploadImageHandleradd(e, setImg));
                                     }}
                                     accept="image/*"
