@@ -29,9 +29,9 @@ const Footer = () => {
             <img src="/images/logo.png" alt="WebSiteLogo" />
           </div>
           <div className="pages">
-            {items?.map((el) => {
+            {items?.map((el,index) => {
               return (
-                <div key={el?.id} className="items">
+                <div key={el?.id+index} className="items">
                   <a href={"#" + el?.title}> {el?.title} </a>
                 </div>
               );

@@ -59,7 +59,7 @@ const Modal1 = ({ setModal, setBuyModal, setTransitonmodal, setChildID }) => {
                         {
                             !loading && OneWish?.length > 0 && data?.map((el, index) => {
                                 return (
-                                    <div key={index + 1} >
+                                    <div key={el?.id+index} >
                                         <div className='topBlock' >
 
                                             <p className="title">{el?.full_name + "  "} {el?.age }<span>տ.{'   '}</span>{el?.birth}</p>

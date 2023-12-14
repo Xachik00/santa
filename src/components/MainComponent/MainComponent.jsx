@@ -64,14 +64,14 @@ const MainComponent = ({ setModal }) => {
           {ImageHelp?.map((el, index) => {
             return (
               <div key={index + 1}  >
-                <div className="imageContainer" key={el.id} >
+                <div className="imageContainer"  >
                   <img key={el?.id} src={el?.src} alt="Steps" />
                   <p className="text">{el?.text}</p>
                 </div>
 
                 <div className="OneImageContainer" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} >
                   {index === idx && <div className="hiddenConta" >
-                    <img key={el?.id} src={el?.src} alt="Steps" />
+                    <img  src={el?.src} alt="Steps" />
                     <p className="text">{el?.text}</p>
                   </div>}
                 </div>
@@ -80,7 +80,7 @@ const MainComponent = ({ setModal }) => {
           })}
           <div className="pointsContainer" >
           {ImageHelp.map((_, index) => (
-              <div key={index} className={`point ${index === idx ? "active" : ""}`} onClick={() => handlePointClick(index)}></div>
+              <div key={index+1} className={`point ${index === idx ? "active" : ""}`} onClick={() => handlePointClick(index)}></div>
             ))}
           </div>
         </div>

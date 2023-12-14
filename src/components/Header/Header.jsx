@@ -33,8 +33,8 @@ const Header = ({ setModal }) => {
         </div>
 
         <div className='pages'>
-          {items?.map((el) => (
-            <div key={el?.id} className='items'>
+          {items?.map((el,index) => (
+            <div key={el?.id+index} className='items'>
               <a href={"#" + el?.title}> {el?.title} </a>
             </div>
           ))}
@@ -53,8 +53,8 @@ const Header = ({ setModal }) => {
         {isModalOpen && (
           <div className='modal' onClick={()=>setModalOpen(false)} >
             <div className="pages">
-              {items?.map((el) => (
-                <div key={el?.id} className='items'>
+              {items?.map((el,index) => (
+                <div key={el?.id+index} className='items'>
                   <a href={"#" + el?.title}> {el?.title} </a>
                 </div>
               ))}

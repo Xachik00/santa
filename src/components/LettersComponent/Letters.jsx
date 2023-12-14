@@ -46,23 +46,23 @@ const Letters = ({ setModal }) => {
       src: "/images/ballon10.png",
     },
     {
-      id: 1,
+      id: 11,
       src: "/images/ballon1.png",
     },
     {
-      id: 2,
+      id: 12,
       src: "/images/ballon2.png",
     },
     {
-      id: 3,
+      id: 13,
       src: "/images/ballon3.png",
     },
     {
-      id: 4,
+      id: 14,
       src: "/images/ballon4.png",
     },
     {
-      id: 5,
+      id: 15,
       src: "/images/ballon5.png",
     },
   ];
@@ -112,7 +112,7 @@ const Letters = ({ setModal }) => {
         <>
         <div className="baloonImages">
           {BalloonsImage?.map((el, index) => (
-            <div className="imgConta" style={{width:'140px',padding:"0 10px"}} key={el.id} onClick={()=>activity(index)}  >
+            <div className="imgConta" style={{width:'140px',padding:"0 10px"}} key={index} onClick={()=>activity(index)}  >
               <img
                 src={el?.src}
                 alt="WishBaloons"

@@ -119,7 +119,7 @@ const AdminAddData = () => {
                         {
                             yearsArray?.map((el, index) => {
                                 return (
-                                    <option key={index} >{el}</option>
+                                    <option key={index+1} >{el}</option>
                                 )
                             })
                         }
@@ -146,7 +146,7 @@ const AdminAddData = () => {
                                 {
                                     activityItem?.photos && activityItem?.photos?.map((el, index) => {
                                         return (
-                                            <div key={index} className="imageContainer" >
+                                            <div key={index+1} className="imageContainer" >
                                                 <img src={el} alt="Photo" className="uploaded-image" />
                                                 <div className=' deleteDiv'><CIcon onClick={() => { DeleteImage(index) }} icon={cilTrash} size='xl' /></div>
                                             </div>
