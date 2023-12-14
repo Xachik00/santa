@@ -66,7 +66,7 @@ const Letters = ({ setModal }) => {
       src: "/images/ballon5.png",
     },
   ];
-  
+
   const [defaultHeights, setDefaultHeights] = useState(
     Array.from({ length: BalloonsImage.length }, () => null)
   );
@@ -92,9 +92,9 @@ const Letters = ({ setModal }) => {
   const currentYear = currentDate.getFullYear() - 1;
   const yearsArray = Array.from({ length: 15 }, (_, i) => currentYear - i);
 
-  const [year,setYear] = useState(0)
-  const [showTwoCom,setShowTwoCom] = useState(false)
-  function activity(yearVal){
+  const [year, setYear] = useState(0)
+  const [showTwoCom, setShowTwoCom] = useState(false)
+  function activity(yearVal) {
     setYear(yearVal);
     setShowTwoCom(true)
 
@@ -103,40 +103,40 @@ const Letters = ({ setModal }) => {
     <div className="Letters">
       <LetterTopGift setModal={setModal} />
       <p className="title" >
-      Մեր գործունեությունը
+        Մեր գործունեությունը
       </p>
 
       <div className="ballons">
         <hr className="line" />
-        {!showTwoCom?
-        <>
-        <div className="baloonImages">
-          {BalloonsImage?.map((el, index) => (
-            <div className="imgConta" style={{width:'140px',padding:"0 10px"}} key={index} onClick={()=>activity(index)}  >
-              <img
-                src={el?.src}
-                alt="WishBaloons"
-                onLoad={(event) => handleImageLoad(index, event)}
-              />
-              {(defaultHeights[index] !== null && defaultHeights[index] !== undefined) && (
-                <p
-                  style={{
-                    bottom: `${defaultHeights[index] * (defaultWidth[index]*0.4/1000)}px`,
-                    fontSize: `${defaultWidth[index] * 0.28}px`
-                  }}
-                  ref={yearRef}
-                  className="yearNumber"
-                >
-                  {yearsArray[index]}
-                </p>
-              )}
+        {!showTwoCom ?
+          <>
+            <div className="baloonImages">
+              {BalloonsImage?.map((el, index) => (
+                <div className="imgConta" style={{ width: '140px', padding: "0 10px" }} key={index} onClick={() => activity(index)}  >
+                  <img
+                    src={el?.src}
+                    alt="WishBaloons"
+                    onLoad={(event) => handleImageLoad(index, event)}
+                  />
+                  {(defaultHeights[index] !== null && defaultHeights[index] !== undefined) && (
+                    <p
+                      style={{
+                        bottom: `${defaultHeights[index] * (defaultWidth[index] * 0.4 / 1000)}px`,
+                        fontSize: `${defaultWidth[index] * 0.28}px`
+                      }}
+                      ref={yearRef}
+                      className="yearNumber"
+                    >
+                      {yearsArray[index]}
+                    </p>
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        </>:
-      <LetterComponentTwo year={year} yearsArray={yearsArray} setShowTwoCom={setShowTwoCom} setYear={setYear} />
-        
-      }
+          </> :
+          <LetterComponentTwo year={year} yearsArray={yearsArray} setShowTwoCom={setShowTwoCom} setYear={setYear} />
+
+        }
       </div>
     </div>
   );

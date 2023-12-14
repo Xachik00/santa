@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { useEffect } from 'react'
 import "./LetterComponentTwo.scss"
 import { useDispatch, useSelector } from 'react-redux'
