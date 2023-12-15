@@ -1,10 +1,11 @@
 {
   "name": "beanangel",
-  "homepage": " https://beanangel.am",
   "version": "0.1.0",
+  "homepage":"https://beanangel.am/",
   "private": true,
   "dependencies": {
-    "@coreui/chartjs": "^3.1.2",
+    "@coreui/chartjs": "^3.1.2",it
+    
     "@coreui/coreui": "^4.3.0",
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-react": "^2.2.1",

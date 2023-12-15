@@ -47,10 +47,10 @@ const Footer = () => {
               {/* <img src="/images/telegram.png" alt="telegram" /> */}
             </div>
             <p className="tel">
-              Հեռ․ <a href="tel:+37498548267">+37498548267</a>
+              Հեռ․ <a href="tel:+37498539964">098/010 53 99 64</a>
             </p>
             <p className="mail">
-              Էլ․ հասցե <a href="Shoonch@gmail.com">Shoonch@gmail.com</a>
+              Էլ․ հասցե <a href="info@shoonch.com">info@shoonch.com</a>
             </p>
           </div>
         </div>
