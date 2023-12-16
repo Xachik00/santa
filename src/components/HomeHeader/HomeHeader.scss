@@ -1,10 +1,9 @@
 .HomeHeader {
   background-repeat: repeat;
   background-size: contain;
-  max-width: 1300px;
+  max-width: 1600px;
   display: flex;
-  justify-content: flex-end;
-
+  justify-content: space-between;
   .container {
     width: 100%;
     margin: 0 auto;

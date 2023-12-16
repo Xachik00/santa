@@ -4,7 +4,9 @@ const HomeHeader = ({setModal}) => {
 
 
   return (
-    <div className='HomeHeader' style={{background:`url(/images/HomeHeaderBackground.png)`}} >
+    <div className='HomeHeader' 
+    style={{background:`url(/images/HomeHeaderBackground.png)`}}
+     >
     <div className="container">
       <div className='contaRight' >
       <div className='title' >

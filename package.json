@@ -4,8 +4,7 @@
   "homepage":"https://beanangel.am/",
   "private": true,
   "dependencies": {
-    "@coreui/chartjs": "^3.1.2",it
-    
+    "@coreui/chartjs": "^3.1.2",
     "@coreui/coreui": "^4.3.0",
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-react": "^2.2.1",

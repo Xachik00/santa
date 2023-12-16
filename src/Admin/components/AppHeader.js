@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   CContainer,
@@ -14,6 +14,7 @@ import { cilMenu } from '@coreui/icons';
 
 const AppHeader = () => {
   const headerRef = useRef();
+  const navigate=useNavigate()
   const dispatch = useDispatch();
   const sidebarShow = useSelector((state) => state.changeState.sidebarShow);
 
@@ -34,7 +35,7 @@ const AppHeader = () => {
         </CHeaderToggler>
         <CHeaderNav className="d-none d-md-flex">
           <CNavItem>
-            <CNavLink to="/" component={NavLink}>
+            <CNavLink onClick={()=>{localStorage.removeItem('auth');navigate('/')}} to="/" component={NavLink}>
               Log Out
             </CNavLink>
           </CNavItem>
