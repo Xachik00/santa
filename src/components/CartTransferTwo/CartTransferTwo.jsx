@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./CartTransferTwo.scss";
 import { addBenevolentData } from "../../Store/Action/BenevolentAction";
 import Swal from "sweetalert2";
@@ -10,7 +10,7 @@ import { CSpinner } from "@coreui/react";
 const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, childID, setInputVal }) => {
   const [error, setError] = useState('')
   const [loading,setLoading] = useState(false)
-
+  const [target,setTarget] = useState(false)
 
 
   useEffect(() => {
@@ -48,15 +48,22 @@ const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, chi
 
 
 
+const aRef = useRef();
+useEffect(() => {
+  const aa = aRef?.current?.getElementsByTagName("a");
+  const aaArray = Array.from(aa);
 
-
+  aaArray.forEach((el) => {
+    return el.setAttribute("target", "_blank");
+  });
+}, [window]);
 
   async function saveData() {
     await addBenevolentData(inputVal, setError,setLoading)
   }
 
   return (
-    <div className="CartTransferTwo">
+    <div className="CartTransferTwo" ref={aRef} >
       <div className="modal">
         <div className="container">
 
@@ -66,7 +73,7 @@ const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, chi
                 <img src="/images/LeftVector.png" alt="BackIcon" />
               </div>
               <p className="topTitle">Գնել առցանց</p>
-              <div className="close" onClick={() => setBuyModal1(false)} >
+              <div className="close" onClick={() => {setBuyModal1(false);setInputVal({})}} >
                 <img src="/images/CloseIcon.png" alt="CloseIcon" />
               </div>
             </div>
@@ -74,7 +81,7 @@ const CartTransferTwo = ({ setBuyModal, setBuyModal1, setSuccsses, inputVal, chi
               <div>
                 <p className="title">Անցեք հղումներից մեկով եվ գնեք նվերը</p>
                 <div className="link">
-                  <div dangerouslySetInnerHTML={{ __html: childID.letter }} />
+                  <div className="linkChild" dangerouslySetInnerHTML = {{ __html: childID.letter }} onClick={(e)=>{console.log(e,"ffffffff")}} />
                 </div>
               </div>
               <button disabled={loading} type="submit" className="saveBtn" onClick={() => { saveData() }} >

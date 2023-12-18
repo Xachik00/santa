@@ -1,5 +1,5 @@
 import { Home } from "./pages/Home";
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,} from 'react';
 import {Route,Routes } from "react-router-dom";
 import { NotFoundPage } from "./pages/NotFaoundPage";
 import {Header} from "./components/Header"
@@ -19,7 +19,6 @@ const Login = React.lazy(() => import('./Admin/views/pages/login/Login'))
 
 
 function App() {
-  
   const [childID,setChildID]=useState({})
   const path = window.location.pathname
   const [modal, setModal] = useState(false);
@@ -47,9 +46,11 @@ function App() {
     if(window.location.pathname === "/admin"){
       window.location.pathname = "/admin/dashboard"
     }
-  },[path])
+  },[path]);
+
+
   return (
-    <div className="App">
+    <div className="App"  >
      {(!window?.location.pathname.includes("/admin"))&& <Header setModal={setModal} />}
      
     {modal && <Modal1 setModal={setModal} setBuyModal={setBuyModal} setTransitonmodal={setTransitonmodal} setChildID={setChildID} />}

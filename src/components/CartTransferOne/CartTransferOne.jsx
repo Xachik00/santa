@@ -74,11 +74,11 @@ const CartTransferOne = ({ setBuyModal, setModal, setBuyModal1, childID, inputVa
         <div className="container">
           <div className="conta">
             <div className="topBlock">
-              <div className="btnBack" onClick={() => changing()} >
+              <div className="btnBack" onClick={() => {changing();setInputVal({})}} >
                 <img src="/images/LeftVector.png" alt="BackIcon" />
               </div>
               <p className="topTitle">Գնել առանց</p>
-              <div className="close" onClick={() => setBuyModal(false)} >
+              <div className="close" onClick={() => {setBuyModal(false);setInputVal({})}} >
                 <img src="/images/CloseIcon.png" alt="CloseIcon" />
               </div>
             </div>
