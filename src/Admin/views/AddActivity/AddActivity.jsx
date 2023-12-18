@@ -158,7 +158,7 @@ const AdminAddData = () => {
                                 </FormLabel>
                             </div>
 
-                            <FormLabel htmlFor="description">Նամակ</FormLabel>
+                            <FormLabel htmlFor="description">Հաղորդագրություն</FormLabel>
                             <FormControl
                                 as={"textarea"}
                                 id="letter"

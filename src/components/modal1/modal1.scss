@@ -21,7 +21,7 @@
       overflow-y: scroll;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-     
+
 
       .close {
         margin: 30px auto;
@@ -29,11 +29,12 @@
         width: 96.7%;
         display: flex;
         align-items: center;
-        
+
 
         img {
           transition: all .3s linear;
           position: fixed;
+
           &:hover {
             transform: scale(1.05);
             cursor: pointer;
@@ -47,16 +48,17 @@
         margin-top: 90px;
         margin: 0 auto;
         max-width: 600px;
-        
 
-        
+
+
         .topBlock {
 
           .title {
             font-weight: 700;
             font-size: 24px;
             color: #2D4B70;
-            span{
+
+            span {
               font-size: 18px;
             }
           }
@@ -64,6 +66,7 @@
           .imageContainer {
             max-width: 600px;
             max-height: 827px;
+
             img {
               width: 100%;
               max-height: 827px;
@@ -78,7 +81,7 @@
         margin-top: 8%;
         display: flex;
         justify-content: space-around;
-        
+
 
         .leftBtn,
         .rightBtn {
@@ -111,7 +114,7 @@
             }
           }
         }
-        }
+      }
 
       .bottomBlock {
         width: 100%;
@@ -125,24 +128,25 @@
 
         .nextPrevButtons {
           margin: 1% auto;
-          width: 70%;  
+          width: 80%;
           display: flex;
           justify-content: space-evenly;
           align-items: center;
+          color: white;
+          gap: 20px;
 
           .prev,
           .next {
-            width: 59px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            background-color: #2D4B70;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            img {
-              width: 100%;
-              transition: all 0.3s linear;
 
-              &:hover {
-                transform: scale(1.05);
-                cursor: pointer;
-              }
-            }
           }
 
           .count {
@@ -162,56 +166,89 @@
         width: 8px;
         height: 5px;
       }
-      
+
       &::-webkit-scrollbar-track {
-        background-color:none;
-      
-      }
-       
-      &::-webkit-scrollbar-thumb {
-        background: #2D4B70;
-        
-        border-radius: 10px;
-      }
-      
-      @media(max-width:625px){
-        .nextPrevButtons{
-         .count{
-          font-size: 15px !important;
-         } 
-        }
+        background-color: none;
+
       }
 
-      @media(max-width:521px){
+      &::-webkit-scrollbar-thumb {
+        background: #2D4B70;
+
+        border-radius: 10px;
+      }
+
+    }
+  }
+
+  @media(max-width:625px) {
+    .modal {
+      .container {
+        // height: 100vh !important;
+
+        .nextPrevButtons {
+
+          .prev,
+          .next {
+            cursor: pointer;
+            width: 20px !important;
+            height: 20px !important;
+            background-color: #2D4B70;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+              width: 12px;
+              font-size: 10px;
+            }
+
+          }
+
+          .count {
+            font-size: 15px !important;
+          }
+        }
+      }
+    }
+  }
+
+  @media(max-width:521px) {
+    .modal {
+      .container {
         .buttons {
+
           .leftBtn,
           .rightBtn {
             button {
-              padding: 12px 21px ;
-              font-size: 14px;
+              
+              // padding: 12px 1px;
+              font-size: 12px;
               font-weight: 600;
-  
+
             }
-  
+
             .btnLeft2 {
-              padding: 10px 13px;
+              // padding: 10px 13px;
             }
-  
+
             .textContainer {
               margin-top: 10px;
               width: 70%;
-  
+
               p {
                 font-weight: 400;
                 font-size: 11px;
               }
             }
           }
+        }
+
+        .nextPrevButtons {
+          .count {
+            font-size: 11px !important;
           }
-        .nextPrevButtons{
-         .count{
-          font-size: 11px !important;
-         } 
         }
       }
     }

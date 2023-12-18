@@ -28,6 +28,13 @@ const AdminAddData = () => {
                 timer: 2500
             }).then(() => {
                 setError("")
+                setSanta({
+                    age: "",
+                    letter: "",
+                    full_name: "",
+                    birth: "",
+                });
+                setImg("");
             });
         }
         if (error?.response?.status < 200 || error?.response?.status >= 400) {
@@ -50,14 +57,7 @@ const AdminAddData = () => {
                 ...santa,
                 image: img,
             };
-            dispatch(addWish(obj, setError));
-            setSanta({
-                age: "",
-                letter: "",
-                full_name: "",
-                birth: "",
-            });
-            setImg("");
+            dispatch(addWish(obj, setError));         
         } catch (error) {
             console.error(error);
         }

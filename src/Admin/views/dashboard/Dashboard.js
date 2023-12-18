@@ -36,6 +36,7 @@ import GiftModal from './Gift'
 import { editWish } from '../../../Store/Action/WishAction';
 import EditComponent from './EditComponent';
 import Pagination from '../../components/Pagination';
+import axios from 'axios';
 
 
 const Dashboard = () => {
@@ -72,17 +73,21 @@ const Dashboard = () => {
 
     `,
       showCancelButton: true,
-      cancelButtonText: "Հետ",
+      cancelButtonText: "Ջնջել հովանվորին",
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Լավ"
     })
       .then((res) => {
-        if (!res?.isDenied) {
+
+        if (res?.isConfirmed) {
           dispatch(fetchBenevolentUbdate());
+        }else{
+          deleteBenevolent()
         }
       })
   }
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
 
@@ -106,7 +111,32 @@ const Dashboard = () => {
     setAddBen(id);
 
   }
+  
+  async function deleteBenevolent(){
+    const URL=process.env.REACT_APP_BASE_URL
+    try{
+      await axios.delete(`${URL}benevolents/delGift/${Benevolent[0]?.id}/${Benevolent[0]?.child_id}`)
+    
+      Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Հովանավորը հաջողությամբ ջնջվել է",
+          showConfirmButton: false,
+          timer: 2500
+      })
+      dispatch(getAllWish());
 
+    }catch(err){
+
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Չհաջողվեց ջնջել հովանավորին!!!",
+        showConfirmButton: false,
+        timer: 2500
+    })      
+  }
+  }
   return (
     <>{!edit ?
       <CRow>

@@ -3,6 +3,8 @@ import './modal1.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOneWish } from '../../Store/Action/OneWish'
 import { Loading } from '../Loading'
+import CIcon from '@coreui/icons-react'
+import { cilCaretLeft, cilCaretRight } from '@coreui/icons'
 
 
 
@@ -34,14 +36,16 @@ const Modal1 = ({ setModal, setBuyModal, setTransitonmodal, setChildID }) => {
         setModal(false)
     }
 
-    async function NextChild() {
+    async function NextChild(e) {
+        e.preventDefault()
         if (count < OneWish?.length) {
             setCount(count + 1);
             setData([OneWish[count]])
         }
 
     }
-    async function PrevChild() {
+    async function PrevChild(e) {
+        e.preventDefault()
         if (count > 1) {
             setCount(count - 1)
             setData([OneWish[count - 2]])
@@ -89,12 +93,12 @@ const Modal1 = ({ setModal, setBuyModal, setTransitonmodal, setChildID }) => {
                                         <div className="bottomBlock">
                                             <hr className="line" />
                                             <div className="nextPrevButtons">
-                                                <div className="prev" onClick={() => PrevChild()}>
-                                                    <img src="/images/PrevBtn.png" alt="Prev" />
+                                                <div className="prev" onClick={(e) => PrevChild(e)}>
+                                                <CIcon icon={cilCaretLeft} />
                                                 </div>
                                                 <div className="count">Տեսնել հաջորդ նամակը {count}/{OneWish?.length}</div>
-                                                <div className="next" onClick={() => NextChild()}>
-                                                    <img src="/images/NextBtn.png" alt="Next" />
+                                                <div className="next" onClick={(e) => NextChild(e)}>
+                                                    <CIcon icon={cilCaretRight} />
                                                 </div>
                                             </div>
                                         </div>
