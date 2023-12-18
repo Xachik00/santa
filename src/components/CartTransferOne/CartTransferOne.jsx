@@ -25,7 +25,7 @@ const CartTransferOne = ({ setBuyModal, setModal, setBuyModal1, childID, inputVa
       } else {
         setErrorMessage(errorMessage.filter((item) => item !== name));
       }
-    } else if (value.length <= 3 || value.length >= 30) {
+    } else if (value.length <= 3 || value.length >= 50) {
       if (!errorMessage.includes(name)) {
         setErrorMessage([...errorMessage, name]);
         setError(error.filter((item) => item !== name));
@@ -74,11 +74,11 @@ const CartTransferOne = ({ setBuyModal, setModal, setBuyModal1, childID, inputVa
         <div className="container">
           <div className="conta">
             <div className="topBlock">
-              <div className="btnBack" onClick={() => changing()} >
+              <div className="btnBack" onClick={() => {changing();setInputVal({})}} >
                 <img src="/images/LeftVector.png" alt="BackIcon" />
               </div>
               <p className="topTitle">Գնել առանց</p>
-              <div className="close" onClick={() => setBuyModal(false)} >
+              <div className="close" onClick={() => {setBuyModal(false);setInputVal({})}} >
                 <img src="/images/CloseIcon.png" alt="CloseIcon" />
               </div>
             </div>
@@ -106,7 +106,7 @@ const CartTransferOne = ({ setBuyModal, setModal, setBuyModal1, childID, inputVa
                     )}
                     {errorMessage.includes("name") && (
                       <span className="errorMessage">
-                        Մինիմում արժեքը 3 մաքսիմում 30
+                        Մինիմում արժեքը 3 մաքսիմում 50
                       </span>
                     )}
                   </div>
@@ -127,7 +127,7 @@ const CartTransferOne = ({ setBuyModal, setModal, setBuyModal1, childID, inputVa
                     )}
                     {errorMessage.includes("surName") && (
                       <span className="errorMessage">
-                        Մինիմում արժեքը 3 մաքսիմում 30
+                        Մինիմում արժեքը 3 մաքսիմում 50
                       </span>
                     )}
                   </div>
@@ -138,7 +138,7 @@ const CartTransferOne = ({ setBuyModal, setModal, setBuyModal1, childID, inputVa
                       // placeholder="Հեռ․համար"
                       // min={0}
                       // pattern={reg}
-                      placeholder={'+37477******'}
+                      placeholder={'+374********'}
                       name="phoneNumber"
                       value={inputVal?.phoneNumber}
                       onChange={(e) => {
@@ -166,7 +166,7 @@ const CartTransferOne = ({ setBuyModal, setModal, setBuyModal1, childID, inputVa
 
                     {errorMessage.includes("phoneNumber") && (
                       <p className="errorMessage">
-                        Մինիմում արժեքը 3 մաքսիմում 30
+                        Մինիմում արժեքը 3 մաքսիմում 50
                       </p>
                     )}
                   </div>
@@ -202,7 +202,7 @@ const CartTransferOne = ({ setBuyModal, setModal, setBuyModal1, childID, inputVa
 
                     {errorMessage.includes("mail") && (
                       <span className="errorMessage">
-                        Մինիմում արժեքը 3 մաքսիմում 30
+                        Մինիմում արժեքը 3 մաքսիմում 50
                       </span>
                     )}
                   </div>

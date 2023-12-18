@@ -17,7 +17,7 @@
     .container {
       width: 90%;
       max-width: 800px;
-      height: 520px;
+      min-height: 520px;
       background: #dcf0ff;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -82,12 +82,15 @@
           }
 
           .link {
+            max-width: 800px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             flex-direction: column;
             row-gap: 50px; 
 
-            a {
+            * {
+              width: 100%;
               display: block;
               font-size: 20px;
               font-weight: 400;
@@ -105,7 +108,7 @@
         .conta {
           .topBlock {
             .topTitle {
-              font-size: 24px; /* Adjusted font size for smaller screens */
+              font-size: 24px; 
             }
           }
 
