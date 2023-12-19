@@ -1,16 +1,20 @@
 import CIcon from '@coreui/icons-react'
 import {
-    cilArrowCircleLeft,
-    cilArrowCircleRight
-  } from '@coreui/icons'
-import React, { useState } from 'react';
+  cilArrowCircleLeft,
+  cilArrowCircleRight
+} from '@coreui/icons'
+import React, { useEffect, useState } from 'react';
 
-const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
+const Pagination = ({ totalItems, itemsPerPage, onPageChange,pagenumber }) => {
+
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageRange = 5; // Adjust this value to change the number of visible page links
+  const [currentPage, setCurrentPage] = useState( pagenumber || 1);
+   const pageRange = 5;
 
   const handlePageChange = (newPage) => {
+
+    localStorage.setItem("currentPage", JSON.stringify(newPage))
+
     setCurrentPage(newPage);
     onPageChange(newPage);
   };
@@ -35,13 +39,13 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
       <ul className="pagination">
         {currentPage > 1 && (
           <li>
-            <button onClick={() => handlePageChange(currentPage - 1)}><CIcon icon={cilArrowCircleLeft}/></button>
+            <button onClick={() => handlePageChange(currentPage - 1)}><CIcon icon={cilArrowCircleLeft} /></button>
           </li>
         )}
         {renderPageNumbers()}
         {currentPage < totalPages && (
           <li>
-            <button onClick={() => handlePageChange(currentPage + 1)}><CIcon icon={cilArrowCircleRight}/></button>
+            <button onClick={() => handlePageChange(currentPage + 1)}><CIcon icon={cilArrowCircleRight} /></button>
           </li>
         )}
       </ul>

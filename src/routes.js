@@ -14,7 +14,6 @@ const routes = [
   { path: '/admin/activeWish', name: 'Typography', element: Typography },
   { path: '/admin/addWish', name: 'addWish', element: AddWish },
   { path: '/admin/addactivity', name: 'addactivity', element: AddActivity },
-  
 ]
 
 export default routes

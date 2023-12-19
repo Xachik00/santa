@@ -59,7 +59,7 @@ const InActivePage = () => {
   function showMoreInfo() {
     Swal.fire({
       imageUrl: `${oneData?.image}`,
-      imageWidth: "70%",
+      // imageWidth: "70%",
       imageHeight: "400px",
       imageAlt: 'Person Image',
       title: `${oneData?.full_name}`,
@@ -147,6 +147,7 @@ const InActivePage = () => {
                   totalItems={InActive.length}
                   itemsPerPage={itemsPerPage}
                   onPageChange={handlePageChange}
+                  pagenumber={currentPage}
                 />
           </CCard>
           

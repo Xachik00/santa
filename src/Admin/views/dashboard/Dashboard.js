@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react'
-import { Button, FormGroup, FormLabel, FormControl, } from 'react-bootstrap';
 import '../theme/AddAdmin/AddData.scss'
 import { deleteAllWish, getAllWish } from "../../../Store/Action/AllWishAction"
 
@@ -192,7 +191,7 @@ const Dashboard = () => {
                       <CTableDataCell className="text-center">
                         <CIcon size="xl" icon={item?.payment?.icon} />
                         <CButton
-                          onClick={() => { item?.is_active ? showBenevolent(item?.id) : becomoeBen(item?.id) }} >{item?.is_active ? "Տեսնել Հրեշտակին" : "Հովանավոր չի գտնվել"}</CButton>
+                          onClick={() => { item?.is_active ? showBenevolent(item?.id) : becomoeBen(item?.id) }} >{item?.is_active ? "Տեսնել Հովանավորին" : "Հովանավոր չի գտնվել"}</CButton>
                       </CTableDataCell>
                       <CTableDataCell  >
                         <CButton className="m-2" onClick={() => deleteItem(item?.id)} ><CIcon icon={cilX}
@@ -210,6 +209,7 @@ const Dashboard = () => {
               totalItems={Wish.length}
               itemsPerPage={itemsPerPage}
               onPageChange={handlePageChange}
+              pagenumber={currentPage}
             />
           </CCard>
         </CCol>

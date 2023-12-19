@@ -1,7 +1,7 @@
 import { cilPlus } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
 import React from 'react'
-import { Button,FormControl, FormGroup, FormLabel } from 'react-bootstrap';
+import { Button, FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 import uploadImageHandleradd from '../../../Store/Action/UploadImageAction';
 import { useDispatch } from 'react-redux';
 import { editWish } from '../../../Store/Action/WishAction';
@@ -10,13 +10,13 @@ import { Eddditor } from '../theme/AddAdmin/LinkEditor';
 
 const EditComponent = ({ edit, setEdit, img, setImg }) => {
     const dispatch = useDispatch();
-    
     async function editToSave(e) {
         e.preventDefault()
         await dispatch(editWish({ ...edit, image: img }));
         await dispatch(getAllWish());
         setEdit('')
     }
+
     return (
         <div className="AdminAddData">
 
@@ -28,7 +28,7 @@ const EditComponent = ({ edit, setEdit, img, setImg }) => {
                         <FormLabel htmlFor="addPersonImage">
                             Փոփոխել Նկար <CIcon icon={cilPlus} />
                         </FormLabel>
-                        <div className="imageContainer">{edit?.image && <img src={img ? img : edit?.image} alt="uploading now images" className="uploaded-image" />}</div>
+                        <div className="imageContainer">{edit?.image ? <img src={img || edit?.image} alt="uploading now images" className="uploaded-image" /> : <div><CIcon icon={cilPlus} /></div>}</div>
                         <FormControl
                             style={{ display: 'none' }}
                             type="file"
@@ -91,7 +91,7 @@ const EditComponent = ({ edit, setEdit, img, setImg }) => {
                     </FormGroup> */}
                     <FormGroup className='mt-5' >
                         <Eddditor value={edit} setValue={setEdit} />
-                        </FormGroup>
+                    </FormGroup>
                     <FormGroup className="button">
                         <Button className="m-2" color="primary" onClick={(e) => editToSave(e)}>
                             Ուղարկել

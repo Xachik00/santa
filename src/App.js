@@ -41,7 +41,7 @@ function App() {
   //   }
 
   // },[path])
-
+  
   useEffect(()=>{
     if(window.location.pathname === "/admin"){
       window.location.pathname = "/admin/dashboard"
